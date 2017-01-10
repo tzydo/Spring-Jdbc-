@@ -9,12 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
-/**
- * Created by Zyzio on 09.01.2017.
- */
 @Configuration
 @ComponentScan("pl.spring.jdb")
 @PropertySource("classpath:dataConfig.property")
@@ -35,8 +33,13 @@ public class JavaConfiguration {
     }
 
     @Bean
-    public JdbcTemplate getJdbcTemplate(DataSource dataSource){
-        return new JdbcTemplate(dataSource);
+    public JdbcTemplate getJdbcTemplate(){
+        return new JdbcTemplate(dataSource());
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(){
+        return new NamedParameterJdbcTemplate(dataSource());
     }
 
 }
