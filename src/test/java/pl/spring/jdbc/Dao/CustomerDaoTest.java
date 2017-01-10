@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import pl.spring.jdbc.DatabaseTables.Customer;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -55,23 +56,22 @@ public class CustomerDaoTest {
     }
 
     @Test
-    public void findByCity() throws Exception {
-        List<Customer> customer = customerDaoImp.FindByCity("France");
+    public void findByCountry() throws Exception {
+        List<Customer> customer = customerDaoImp.findByCountry("France");
 
        Assert.assertNotNull(customer);
        assertThat(customer, hasItems(new Customer(
                105, "Atelier graphique", "Schmitt",
                "Carine", "40.32.2555", "54", "rue Royale",
-               "", "Nantes", "44000", "France",
-               1370,21000.00))); //homcrest test
+               null, "Nantes", "44000", "France",
+               1370,new BigDecimal(21000)))); //homcrest test
 
-//        assertThat(customer, containsInAnyOrder(
-//                hasProperty("", is("Apple")),
-//                hasProperty("name", is("Banana"))
+        Assert.assertEquals(3,customer.size());
+
     }
 
     @Test
-    public void findByCountry() throws Exception {
+    public void findByCity() throws Exception {
 
     }
 

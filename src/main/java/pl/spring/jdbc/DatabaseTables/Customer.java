@@ -2,8 +2,12 @@ package pl.spring.jdbc.DatabaseTables;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.math.BigDecimal;
 
 @AllArgsConstructor
+@EqualsAndHashCode //dodatkowa
 public @Data class Customer {
     private int customerNumer;
     private String customerName;
@@ -17,7 +21,7 @@ public @Data class Customer {
     private String postalCode;
     private String country;
     private int salesRepEmployeeNumber;
-    private Double creditLimit;
+    private BigDecimal creditLimit;
 
     public Customer(){};
 }

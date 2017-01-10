@@ -25,7 +25,7 @@ public @Data class CustomerMapper implements RowMapper<Customer>{
         customer.setPostalCode(rs.getString("postalCode"));
         customer.setCountry(rs.getString("country"));
         customer.setSalesRepEmployeeNumber(rs.getInt("salesRepEmployeeNumber"));
-        customer.setCreditLimit(rs.getDouble("creditLimit"));
+        customer.setCreditLimit(rs.getBigDecimal("creditLimit"));
         return customer;
     }
 }

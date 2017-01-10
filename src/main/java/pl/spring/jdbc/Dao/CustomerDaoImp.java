@@ -53,11 +53,11 @@ public class CustomerDaoImp implements CustomerDao {
     }
 
     @Override
-    public List<Customer> FindByCity(String city) {
+    public List<Customer> findByCountry(String country) {
         Map<String,Object>param = new HashMap<>();
-        param.put("city",city);
+        param.put("country",country);
 
-        sql = "SELECT * FROM customers WHERE city = :city";
+        sql = "SELECT * FROM customers WHERE country = :country";
 
         List<Customer> customersList = new ArrayList<>();
         customersList = namedParameterJdbcTemplate.query(sql,param,new CustomerMapper());
@@ -66,7 +66,7 @@ public class CustomerDaoImp implements CustomerDao {
     }
 
     @Override
-    public List<Customer> FindByCountry(String country) {
+    public List<Customer> findByCity(String city) {
         return null;
     }
 

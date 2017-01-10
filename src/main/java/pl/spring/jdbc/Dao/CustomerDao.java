@@ -8,8 +8,8 @@ public interface CustomerDao {
 
     public Customer findByCustomerNumber(int number);
     public Customer findByCustomerName(String name);
-    public List<Customer>FindByCity(String city);
-    public List<Customer>FindByCountry(String country);
+    public List<Customer>findByCity(String city);
+    public List<Customer>findByCountry(String country);
     public int customersAmount();
     public int customerAmountInCity(String city);
     public int amountCities();
