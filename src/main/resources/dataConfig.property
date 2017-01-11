@@ -1,4 +1,5 @@
 ServerName=localhost
 DataBaseName=classicmodels
 DatabaseUser=zyzio
-DatabasePasswort=mortall1994
+DatabasePassword=mortall1994
+Url=jdbc:mysql://localhost/classicmodels

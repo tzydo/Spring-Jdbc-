@@ -5,3 +5,4 @@ INSERT INTO CUSTOMERS VALUES(114,'Australian Collectors','Co.','Ferguson','Peter
 INSERT INTO CUSTOMERS VALUES(119,'La Rochelle Gifts','Labrune' , 'Janine','40.67.8555', '67','rue des Cinquante Otages',NULL,'Nantes','44000','France' ,137,118200.00);
 INSERT INTO CUSTOMERS VALUES(121,'Baane Mini Imports','Bergulfsen','Jonas','07-98 9555','78','Erling Skakkes gate',NULL,'Stavern','4110','Norway',1504,81700.00);
 INSERT INTO CUSTOMERS VALUES(133,'Lamier Roch','Bruno' , 'Kani','56.57.86755', '67','rue des Otages',NULL,'Nantes','123000','France' ,1337,168200.00);
+INSERT INTO CUSTOMERS VALUES(122 ,'Signal Gift Stores','Joan','Han','702535358','8455 Strange st' , NULL ,'Las Vegas','NV' ,'83430 ','USA' , 6166 ,55800.00);

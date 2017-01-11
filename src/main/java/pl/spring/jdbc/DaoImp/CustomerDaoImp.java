@@ -1,9 +1,10 @@
-package pl.spring.jdbc.Dao;
+package pl.spring.jdbc.DaoImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.spring.jdbc.Dao.CustomerDao;
 import pl.spring.jdbc.DatabaseTables.Customer;
 import pl.spring.jdbc.Mappers.CustomerMapper;
 
@@ -22,6 +23,7 @@ public class CustomerDaoImp implements CustomerDao {
     private JdbcTemplate jdbcTemplate;
 //    @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 
     @Autowired
     public void setParameterJdbcTemplate(DataSource dataSource){
@@ -67,26 +69,31 @@ public class CustomerDaoImp implements CustomerDao {
 
     @Override
     public List<Customer> findByCity(String city) {
-        return null;
+       sql = "SELECT * FROM customers WHERE city = ?";
+       return jdbcTemplate.query(sql,new CustomerMapper(),city);
     }
 
     @Override
     public int customersAmount() {
-        return 0;
+        sql = "SELECT COUNT(customerName) FROM customers";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
     }
 
     @Override
     public int customerAmountInCity(String city) {
-        return 0;
+        sql = "SELECT COUNT(customerName)FROM customers WHERE city = ?";
+        return jdbcTemplate.queryForObject(sql,Integer.class,city);
     }
 
     @Override
     public int amountCities() {
-        return 0;
+        sql = "SELECT COUNT(DISTINCT(city)) FROM customers";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
     }
 
     @Override
     public int amountState() {
-        return 0;
+        sql = "SELECT COUNT(DISTINCT(state)) FROM customers";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
     }
 }

@@ -12,5 +12,5 @@ CREATE TABLE customers(
     	postalCode varchar(50),
      	country varchar(50),
     	salesRepEmployeeNumber int,
-    	creditLimit decimal
+    	creditLimit decimal(20,2)
 );
