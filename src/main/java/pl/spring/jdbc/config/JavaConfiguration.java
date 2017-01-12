@@ -1,4 +1,4 @@
-package pl.spring.jdbc.Config;
+package pl.spring.jdbc.config;
 
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
@@ -8,16 +8,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import pl.spring.jdbc.DaoImp.CustomerDaoImp;
-import pl.spring.jdbc.DaoImp.EmployeesDaoImp;
-import pl.spring.jdbc.DaoImp.OfficesDaoImp;
+import pl.spring.jdbc.dao.CustomerDao;
+import pl.spring.jdbc.dao.EmployeesDao;
+import pl.spring.jdbc.daoImp.CustomerDaoImp;
+import pl.spring.jdbc.daoImp.EmployeesDaoImp;
+import pl.spring.jdbc.daoImp.OfficesDaoImp;
 
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan("pl.spring.jdb.daoImp")
+@ComponentScan({"pl.spring.jdb.daoImp","pl.spring.jdbc.dao"})
 @PropertySource("classpath:dataConfig.property")
 public class JavaConfiguration {
 
@@ -36,23 +36,23 @@ public class JavaConfiguration {
         return dataSource;
     }
 
-    @Bean
-    public JdbcTemplate getJdbcTemplate(){
-        return new JdbcTemplate(dataSource());
-    }
+//    @Bean
+//    public JdbcTemplate getJdbcTemplate(){
+//        return new JdbcTemplate(dataSource());
+//    }
+//
+//    @Bean
+//    public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(){
+//        return new NamedParameterJdbcTemplate(dataSource());
+//    }
 
     @Bean
-    public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(){
-        return new NamedParameterJdbcTemplate(dataSource());
-    }
-
-    @Bean
-    public CustomerDaoImp customerDaoImp(){
+    public CustomerDao customerDaoImp(){
         return new CustomerDaoImp();
     }
 
     @Bean
-    public EmployeesDaoImp employeesDaoImp(){
+    public EmployeesDao employeesDaoImp(){
         return new EmployeesDaoImp();
     }
 

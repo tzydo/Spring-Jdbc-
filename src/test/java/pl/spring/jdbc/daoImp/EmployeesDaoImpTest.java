@@ -1,21 +1,22 @@
-package pl.spring.jdbc.DaoImp;
+package pl.spring.jdbc.daoImp;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import pl.spring.jdbc.Dao.EmployeesDao;
-import pl.spring.jdbc.DatabaseTables.Employees;
+import pl.spring.jdbc.dao.EmployeesDao;
+import pl.spring.jdbc.model.Employees;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class EmployeesDaoImpTest {
@@ -45,7 +46,7 @@ public class EmployeesDaoImpTest {
     public void getEmployeByEmployeNumberTest() throws Exception {
         Employees employees = employeesDaoImp.getEmployeByEmployeNumber(1002);
 
-        Assert.assertNotNull(employees);
+        assertNotNull(employees);
         assertEquals("President", employees.getJobTitle());
     }
 
@@ -63,23 +64,23 @@ public class EmployeesDaoImpTest {
         listTest.add("VP Marketing");
 
 
-        Assert.assertNotNull(jobsList);
-        Assert.assertThat(jobsList, hasItem("President"));
+        assertNotNull(jobsList);
+        assertThat(jobsList, hasItem("President"));
         assertEquals(listTest, jobsList);
     }
 
     @Test
     public void getAmountJobsTitlesTest() throws Exception {
         int amountJobsTitles = employeesDaoImp.getAmountJobsTitles();
-        Assert.assertNotNull(amountJobsTitles);
-        Assert.assertNotEquals(0, amountJobsTitles);
-        Assert.assertEquals(7, amountJobsTitles);
+        assertNotNull(amountJobsTitles);
+        assertNotEquals(0, amountJobsTitles);
+        assertEquals(7, amountJobsTitles);
     }
 
     @Test
     public void getNumberOfWorkersAtThePlaceTest() throws Exception {
         int numberOfWorkersAtThePlace = employeesDaoImp.getNumberOfWorkersAtThePlace("Sales Rep");
-        Assert.assertNotNull(numberOfWorkersAtThePlace);
+        assertNotNull(numberOfWorkersAtThePlace);
         assertNotEquals(0, numberOfWorkersAtThePlace);
         assertEquals(5, numberOfWorkersAtThePlace);
     }

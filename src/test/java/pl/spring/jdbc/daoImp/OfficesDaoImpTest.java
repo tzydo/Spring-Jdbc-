@@ -1,22 +1,26 @@
-package pl.spring.jdbc.DaoImp;
+package pl.spring.jdbc.daoImp;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import pl.spring.jdbc.Dao.OfficesDao;
-import pl.spring.jdbc.DatabaseTables.Offices;
+import pl.spring.jdbc.dao.OfficesDao;
+import pl.spring.jdbc.model.Offices;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 
 public class OfficesDaoImpTest {
+    @Autowired
     private EmbeddedDatabase embeddedDatabase;
     private OfficesDao officesDaoImp;
 
@@ -47,8 +51,8 @@ public class OfficesDaoImpTest {
                 "100 Market Street", "Suite 300",
                 "CA", "USA", "94080", "NA");
 
-        Assert.assertNotNull(officeByOfficeCode);
-        Assert.assertEquals(officeByOfficeCode,(officeTest));
+        assertNotNull(officeByOfficeCode);
+        assertEquals(officeByOfficeCode,(officeTest));
     }
 
     @Test
@@ -63,7 +67,7 @@ public class OfficesDaoImpTest {
 
         officeTestList.add(officeTest);
 
-        Assert.assertNotNull(officeListByCountry);
+        assertNotNull(officeListByCountry);
         assertThat(officeListByCountry,hasItem(officeTest));
     }
 
@@ -79,9 +83,9 @@ public class OfficesDaoImpTest {
         listTest.add("Australia");
 
 
-        Assert.assertNotNull(officesCountry);
+        assertNotNull(officesCountry);
         assertThat(officesCountry,hasItem("USA"));
-        Assert.assertEquals(officesCountry, listTest);
+        assertEquals(officesCountry, listTest);
     }
 
 }

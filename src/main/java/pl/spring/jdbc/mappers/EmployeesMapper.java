@@ -1,7 +1,7 @@
-package pl.spring.jdbc.Mappers;
+package pl.spring.jdbc.mappers;
 
 import org.springframework.jdbc.core.RowMapper;
-import pl.spring.jdbc.DatabaseTables.Employees;
+import pl.spring.jdbc.model.Employees;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

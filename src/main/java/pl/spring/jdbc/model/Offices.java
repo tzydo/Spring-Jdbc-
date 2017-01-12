@@ -1,4 +1,4 @@
-package pl.spring.jdbc.DatabaseTables;
+package pl.spring.jdbc.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

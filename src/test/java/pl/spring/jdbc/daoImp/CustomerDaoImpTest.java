@@ -1,4 +1,4 @@
-package pl.spring.jdbc.DaoImp;
+package pl.spring.jdbc.daoImp;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,20 +7,24 @@ import org.junit.Assert;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import pl.spring.jdbc.DatabaseTables.Customer;
+import org.springframework.stereotype.Component;
+import pl.spring.jdbc.dao.CustomerDao;
+import pl.spring.jdbc.model.Customer;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
-
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class CustomerDaoImpTest {
 
     private EmbeddedDatabase database;
-    private CustomerDaoImp customerDaoImp;
-
+    private CustomerDao customerDaoImp;
 
     @Before
     public void setUp() throws Exception {
@@ -30,8 +34,8 @@ public class CustomerDaoImpTest {
                 .addScript("sql/inserts/insertCustomer_data.sql")
                 .build();
 
-        customerDaoImp = new CustomerDaoImp();
-        customerDaoImp.setParameterJdbcTemplate(database);
+          customerDaoImp = new CustomerDaoImp();
+          customerDaoImp.setParameterJdbcTemplate(database);
     }
 
 
@@ -39,19 +43,19 @@ public class CustomerDaoImpTest {
     public void findByCustomerNumberTest() throws Exception {
         Customer customer = customerDaoImp.findByCustomerNumber(1);
 
-        Assert.assertNotNull(customer);
-        Assert.assertEquals(1,customer.getCustomerNumer());
-        Assert.assertEquals("John Ferguson",customer.getCustomerName());
-        Assert.assertEquals("San Francisko",customer.getCity());
+        assertNotNull(customer);
+        assertEquals(1,customer.getCustomerNumer());
+        assertEquals("John Ferguson",customer.getCustomerName());
+        assertEquals("San Francisko",customer.getCity());
     }
 
     @Test
     public void findByCustomerNameTest() throws Exception {
         Customer customer = customerDaoImp.findByCustomerName("Atelier graphique");
 
-        Assert.assertNotNull(customer);
-        Assert.assertNotEquals(customer.getCustomerNumer(),106); //105
-        Assert.assertEquals(customer.getCountry(),"France");
+        assertNotNull(customer);
+        assertNotEquals(customer.getCustomerNumer(),106); //105
+        assertEquals(customer.getCountry(),"France");
     }
 
     @Test
@@ -65,11 +69,11 @@ public class CustomerDaoImpTest {
             "44000", "France",1370,
             new BigDecimal(21000.00).setScale(2)); //homcrest test
 
-        Assert.assertNotNull(customerList);
+        assertNotNull(customerList);
         Customer customer = customerList.get(0);
-        Assert.assertEquals(customerTest,customer);
+        assertEquals(customerTest,customer);
         assertThat(customerList, hasItems(customerTest));
-        Assert.assertEquals(3,customerList.size());
+        assertEquals(3,customerList.size());
 
     }
 
@@ -77,7 +81,7 @@ public class CustomerDaoImpTest {
     public void findByCityTest() throws Exception {
         List<Customer>customerList = customerDaoImp.findByCity("San Francisko");
 
-        Assert.assertNotNull(customerList);
+        assertNotNull(customerList);
         assertThat(customerList,hasItems(new Customer(
                 1, "John Ferguson",
                 "Anderson", "Dominick",
@@ -92,25 +96,25 @@ public class CustomerDaoImpTest {
     @Test
     public void customersAmountTest() throws Exception {
         int amount = customerDaoImp.customersAmount();
-        Assert.assertEquals(8,amount);
+        assertEquals(8,amount);
     }
 
     @Test
     public void customerAmountInCityTest() throws Exception {
         int customerAmountInCity = customerDaoImp.customerAmountInCity("Las Vegas");
-        Assert.assertEquals(2,customerAmountInCity);
+        assertEquals(2,customerAmountInCity);
     }
 
     @Test
     public void amountCitiesTest() throws Exception {
         int amountCities = customerDaoImp.amountCities();
-        Assert.assertEquals(3,amountCities);
+        assertEquals(3,amountCities);
     }
 
     @Test
     public void amountStateTest() throws Exception {
         int amountState = customerDaoImp.amountState();
-        Assert.assertEquals(5,amountState);
+        assertEquals(5,amountState);
     }
 
 

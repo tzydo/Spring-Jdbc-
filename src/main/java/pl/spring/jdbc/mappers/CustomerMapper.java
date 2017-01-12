@@ -1,8 +1,8 @@
-package pl.spring.jdbc.Mappers;
+package pl.spring.jdbc.mappers;
 
 import lombok.Data;
 import org.springframework.jdbc.core.RowMapper;
-import pl.spring.jdbc.DatabaseTables.Customer;
+import pl.spring.jdbc.model.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
