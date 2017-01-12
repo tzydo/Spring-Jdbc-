@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 
 
 public class OfficesDaoImpTest {
-    @Autowired
+
     private EmbeddedDatabase embeddedDatabase;
     private OfficesDao officesDaoImp;
 
